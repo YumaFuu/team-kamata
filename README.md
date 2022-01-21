@@ -1,6 +1,14 @@
 # 嘘つくのやめてもらっていいですか？
 
-# nextサーバー起動
-'''
-npx run dev
-'''
+## nextサーバー起動
+```bash
+$ cd frontend
+$ npx run dev
+
+```
+## goサーバー起動
+```bash
+$ cd go
+$ go run cmd/server/main.go
+$ curl -XPOST -F file=@./static/sample.mp4 http://localhost:9000/analyze
+```
