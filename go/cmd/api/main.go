@@ -1,7 +1,14 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+
+const port = "9000"
 
 func main() {
-	http.ListenAndServe(":8080", nil)
+	fmt.Printf("🚀 Server Started %s port\n", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
