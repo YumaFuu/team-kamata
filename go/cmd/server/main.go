@@ -32,7 +32,12 @@ func main() {
 		}
 		defer file.Close()
 
-		result := usecase.Analyze(file)
+		result, err := usecase.Analyze(file)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(fmt.Sprintf("Internal Error: %s", err.Error())))
+			return
+		}
 		res, err := json.Marshal(result)
 
 		if err != nil {
