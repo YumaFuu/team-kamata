@@ -12,7 +12,7 @@ const port = "9000"
 
 type (
 	HiroyukiResponse struct {
-		Hello string `json:"hello"`
+		Message string `json:"message"`
 	}
 )
 
@@ -33,7 +33,12 @@ func main() {
 		defer file.Close()
 
 		result := usecase.Analyze(file)
-		res, err := json.Marshal(result)
+
+		hr := HiroyukiResponse{
+			Message: result.Message,
+		}
+
+		res, err := json.Marshal(hr)
 
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
