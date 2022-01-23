@@ -44,7 +44,7 @@ func Analyze(file multipart.File) (*Result, error) {
 	}
 	apiKey := os.Getenv("EMPATH_API_KEY")
 
-	r, err := empath_api(file, apiKey)
+	r, err := empath_api(file, apiKey) // [FIX] wavファイルを入れる
 	if err != nil {
 		return nil, err
 	}
@@ -57,25 +57,21 @@ func empath_api(file multipart.File, apiKey string) (response *Response, err err
 	req := Request{APIKey: apiKey, Wav: file}
 	j, err := json.Marshal(req)
 	if err != nil {
-		fmt.Println("here1")
 		return nil, err
 	}
 
 	res, err := http.Post(URI, "application/json", bytes.NewBuffer(j))
 	if err != nil {
-		fmt.Println("here2")
 		return nil, err
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println("here3")
 		return nil, err
 	}
 
 	var r Response
 	if err := json.Unmarshal(body, &r); err != nil {
-		fmt.Println("here3")
 		return nil, err
 	}
 
