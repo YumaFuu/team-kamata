@@ -27,9 +27,9 @@ class AudioAnalyzer
   def analyze_emotion(wavfile)
     # call empath api
     {
-      "attr1": 1,
-      "attr2": 2,
-      "attr3": 3,
+      "attr1": [*0..10].sample,
+      "attr2": [*0..10].sample,
+      "attr3": [*0..10].sample,
     }
   end
 end
