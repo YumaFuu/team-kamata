@@ -1,0 +1,35 @@
+require "pathname"
+
+class AudioAnalyzer
+  def self.call(file)
+    aa = new
+
+    begin
+      wavfile = aa.mp4_to_wav(file)
+      result = aa.analyze_emotion(wavfile)
+
+      result
+    rescue => e
+      raise "#{self.name} Faild: #{e}"
+    end
+  end
+
+  def mp4_to_wav(filepath)
+    wavpath = Pathname.new(filepath).sub_ext ".wav"
+
+    cmd = "ffmpeg -i '#{filepath.to_s}' -ac 2 -f wav '#{wavpath.to_s}'"
+    system cmd
+
+    wavpath
+  end
+
+
+  def analyze_emotion(wavfile)
+    # call empath api
+    {
+      "attr1": 1,
+      "attr2": 2,
+      "attr3": 3,
+    }
+  end
+end
