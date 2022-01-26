@@ -1,9 +1,9 @@
 # 嘘つくのやめてもらっていいですか？
 
-## nextサーバー起動
+## reactサーバー起動
 ```bash
 $ cd frontend
-$ npx run dev
+$ npm start
 
 ```
 ## goサーバー起動
