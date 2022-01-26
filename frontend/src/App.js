@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, BrowserRouter, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>嘘つくのやめてもらっていいですか？</p>
+    <p>
+      <a href="video">動画投稿</a>
+    </p>
+    <p>
+      <a href="analyze">分析</a>
+    </p>
+    <hr />
+
+    <BrowserRouter>
+      <Routes>
+      <Route exact path="analyze" element={<Analyze />} />
+      <Route path="video" element={<Video />} />
+      </Routes>
+    </BrowserRouter>
+
     </div>
   );
 }
 
+function Analyze() {
+  return (
+    <h1>分析！</h1>
+  )
+}
+
+function Video() {
+  return (
+    <h1>動画投稿</h1>
+  )
+}
 export default App;
