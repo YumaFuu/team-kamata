@@ -1,4 +1,6 @@
 import { Route, Routes, BrowserRouter, Link } from "react-router-dom";
+import Video from "./Video"
+import Analyze from "./Analyze"
 
 function App() {
   return (
@@ -23,15 +25,4 @@ function App() {
   );
 }
 
-function Analyze() {
-  return (
-    <h1>分析！</h1>
-  )
-}
-
-function Video() {
-  return (
-    <h1>動画投稿</h1>
-  )
-}
 export default App;
