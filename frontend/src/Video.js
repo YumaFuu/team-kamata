@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from "react";
+import Analyze from "./Analyze";
 import instance from './axios';
 import requests from './requests';
 
@@ -17,7 +18,9 @@ export const Video = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+
             console.log(res);
+            return res
         } catch(err) {
             console.log(err);
         }
@@ -30,12 +33,15 @@ export const Video = () => {
         });
     }, [onPostForm]);
 
+    const res = onPostForm()
+
     return (
         <div>
             <form onSubmit={onSubmitHandler}>
                 <input type="file" accept="video/*" ref={ref} />
                 <input type="submit" value="送信" />
             </form>
+            <Analyze res={res}/>
         </div>
     )
 }

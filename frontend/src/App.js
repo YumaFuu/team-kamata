@@ -1,11 +1,11 @@
-import { Route, Routes, BrowserRouter, Link } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Video from "./Video"
 import Analyze from "./Analyze"
 
 function App() {
   return (
     <div>
-      <p>嘘つくのやめてもらっていいですか？</p>
+      <h1>嘘つくのやめてもらっていいですか？</h1>
     <p>
       <a href="video">動画投稿</a>
     </p>
