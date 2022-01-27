@@ -32,7 +32,7 @@ export const Video = () => {
             });
 
             const j = JSON.parse(JSON.stringify(res.data))
-            const t = j.movie.map(obj => obj.time)
+            const t = j.movie.map(obj => obj.time + "秒")
             const m = j.movie.map(obj => obj.data.happy)
             const a = j.audio.map(obj => obj.data.joy)
 

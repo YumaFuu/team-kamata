@@ -6,13 +6,9 @@ import Analyze from "./Analyze"
 function App() {
   return (
     <BrowserRouter>
-    <div>
-      
+    <div style={{ marginLeft: 20 }}>
+
       <h1>嘘つくのやめてもらっていいですか？</h1>
-      <ul>
-        <li><Link to="/video">動画投稿</Link></li>
-        <li><Link to="/analyze">分析</Link></li>
-      </ul>
       <hr />
 
         <Routes>
