@@ -8,7 +8,6 @@ class MainAnalyzer
     audioresult = AudioAnalyzer.call(f.path)
     movieresult = MovieAnalyzer.call(f.path)
 
-
     {
       audio: audioresult,
       movie: movieresult,

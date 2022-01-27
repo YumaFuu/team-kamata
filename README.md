@@ -6,8 +6,8 @@ $ cd frontend
 $ npm start
 
 ```
-## ruby
+## rubyサーバー起動
 ```bash
-$ cd ruby
+$ cd backend
 $ docker-componse up --build
 ```
