@@ -35,7 +35,7 @@ class MovieAnalyzer
       file = pngfile[:file]
       time = pngfile[:time]
 
-      data = AWS.call(file)
+      data = AWS.(file)
 
       {
         "time": time,

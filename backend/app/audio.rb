@@ -36,7 +36,7 @@ class AudioAnalyzer
       file = wavfile[:file]
       time = wavfile[:time]
 
-      data = Empath.call(file)
+      data = Empath.(file)
       {
         "time": time,
         "data": data,

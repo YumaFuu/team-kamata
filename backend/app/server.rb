@@ -6,11 +6,10 @@ require "./app/analyzer"
 
 class Server
   def call(env)
-
     begin
       f = env.dig("MULTIPART_CONTENT", "file")
 
-      result = MainAnalyzer.call(f)
+      result = MainAnalyzer.(f)
 
       res result.to_json
     rescue => e
