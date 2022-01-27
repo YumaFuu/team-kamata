@@ -1,3 +1,4 @@
+require "dotenv/load"
 
 module Middleware
   class MultipartParser

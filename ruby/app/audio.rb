@@ -1,4 +1,5 @@
 require "pathname"
+require "./external/empath"
 
 class AudioAnalyzer
   def self.call(file)
@@ -26,6 +27,7 @@ class AudioAnalyzer
 
   def analyze_emotion(wavfile)
     # call empath api
+    Empath.call(wavfile)
     {
       "attr1": [*0..10].sample,
       "attr2": [*0..10].sample,
