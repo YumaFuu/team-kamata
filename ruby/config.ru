@@ -1,4 +1,12 @@
 require "dotenv/load"
+require "aws-sdk"
+
+ak = ENV["AWS_ACCESS_KEY"]
+sk = ENV["AWS_SECRET_KEY"]
+Aws.config.update({
+  region: 'ap-northeast-1',
+  credentials: Aws::Credentials.new(ak, sk),
+})
 
 module Middleware
   class MultipartParser

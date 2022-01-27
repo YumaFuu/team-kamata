@@ -1,6 +1,7 @@
 require "pathname"
 
 class MovieAnalyzer
+  BUCKET = "team-kamata"
   def self.call(file)
     ma = new
 
@@ -12,6 +13,9 @@ class MovieAnalyzer
     rescue => e
       raise "#{self.name} Faild: #{e}"
     end
+  end
+
+  def initialize
   end
 
   def mp4_to_pngs(filepath)
@@ -31,19 +35,44 @@ class MovieAnalyzer
 
 
   def analyze_emotion(pngfiles)
-    pngfiles.map do |file|
-      # file = file[:file]
-      time = file[:time]
+    now = Time.now.to_s.split
+    dir = "#{now[0]}/#{now[1].split(":").join}"
 
-      # call img api
-      # Empath.call(file)
+    pngfiles.map do |pngfile|
+      file = pngfile[:file]
+      time = pngfile[:time]
+
+      client = Aws::S3::Client.new
+      key = "#{dir}/#{file.basename.to_s}"
+
+      client.put_object(
+        bucket: BUCKET,
+        key: key,
+        body: File.open(file),
+        content_type: "image/png",
+      )
+
+      rekog = Aws::Rekognition::Client.new
+      result = rekog.detect_faces({
+        image: {
+          s3_object: {
+            bucket: BUCKET,
+            name: key,
+          },
+        },
+        attributes: ["ALL"],
+      })
+
+
+      # 顔は1つだけの想定
+      detail = result.face_details.first
+
+      data = {}
+      detail.emotions&.each{ |emo| data[emo.type&.downcase] = emo.confidence }
+
       {
         "time": time,
-        "data": {
-          "attr1": [*0..10].sample,
-          "attr2": [*0..10].sample,
-          "attr3": [*0..10].sample,
-        }
+        "data": data,
       }
     end
   end

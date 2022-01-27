@@ -6,8 +6,8 @@ class AudioAnalyzer
     aa = new
 
     begin
-      wavfile = aa.mp4_to_wav(file)
-      result = aa.analyze_emotion(wavfile)
+      wavfiles = aa.mp4_to_wavs(file)
+      result = aa.analyze_emotion(wavfiles)
 
       result
     rescue => e
@@ -15,23 +15,32 @@ class AudioAnalyzer
     end
   end
 
-  def mp4_to_wav(filepath)
-    wavpath = Pathname.new(filepath).sub_ext ".wav"
+  def mp4_to_wavs(filepath)
+    10.times.map do |i|
+      t = 0.5 * i
 
-    cmd = "ffmpeg -i '#{filepath.to_s}' -ac 2 -f wav '#{wavpath.to_s}'"
-    system cmd
+      wavpath = Pathname.new(filepath).sub_ext "#{i}.wav"
+      cmd = "ffmpeg -ss #{t} -t 0.5 -i '#{filepath.to_s}' -ar 11025 -ac 1 -f wav '#{wavpath.to_s}'"
+      system cmd
 
-    wavpath
+      {
+        file: wavpath,
+        time: t,
+      }
+    end
   end
 
 
-  def analyze_emotion(wavfile)
-    # call empath api
-    Empath.call(wavfile)
-    {
-      "attr1": [*0..10].sample,
-      "attr2": [*0..10].sample,
-      "attr3": [*0..10].sample,
-    }
+  def analyze_emotion(wavfiles)
+    wavfiles.map do |wavfile|
+      file = wavfile[:file]
+      time = wavfile[:time]
+
+      data = Empath.call(file)
+      {
+        "time": time,
+        "data": data,
+      }
+    end
   end
 end
