@@ -6,9 +6,8 @@ $ cd frontend
 $ npm start
 
 ```
-## goサーバー起動
+## ruby
 ```bash
-$ cd go
-$ go run cmd/server/main.go
-$ curl -XPOST -F file=@./static/sample.mp4 http://localhost:9000/analyze
+$ cd ruby
+$ docker-componse up --build
 ```
