@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Video from "./Video"
 import Analyze from "./Analyze"
