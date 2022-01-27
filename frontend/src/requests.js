@@ -1,5 +1,5 @@
 const requests = {
-    postVideo: "/video",
+    postVideo: "/",
 }
 
 export default requests
