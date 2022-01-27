@@ -21,6 +21,15 @@ class Server
 
   private
   def res(body, status = 200)
-    [status, {"Content-Type" => "application/json"}, [body]]
+    header = {
+        "Access-Control-Allow-Origin" => "*",
+        "Access-Control-Allow-Methods" =>
+          %w(GET POST PUT PATCH OPTIONS DELETE) * ",",
+        "Access-Control-Allow-Headers" =>
+          %w(Content-Type Accept Auth-Token Authorization Access-Control-Allow-Origin) * ",",
+        "Content-Type" => "application/json",
+
+    }
+    [status, header, [body]]
   end
 end
