@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -23,18 +23,19 @@ ChartJS.register(
 );
 
 export const Analyze = (props) => {
-    const labels = ["0秒", "5秒", "10秒", "15秒", "20秒", "25秒", "30秒", "35秒", "40秒", "45秒", "50秒", "55秒", "1分"];
+    const labels = props.time;
+
     const graphData = {
         labels: labels,
         datasets: [
             {
                 label: "動画",
-                data: [65, 59, 60, 81, 56, 55, 65, 59, 60, 81, 56, 55, 64],
+                data: props.movie,
                 borderColor: "rgb(75, 192, 192)",
             },
             {
                 label: "音声",
-                data: [60, 55, 57, 61, 75, 50, 65, 59, 60, 81, 56, 55, 71],
+                data: props.audio,
                 borderColor: "rgb(75, 100, 192)",
             },
             ],
