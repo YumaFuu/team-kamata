@@ -1,25 +1,19 @@
 FROM ruby:2.7.3
 
-RUN apt-get update -qq && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     build-essential \
-    ffmpeg \
- && rm -rf /var/lib/apt/lists/*
+    ffmpeg
 
-WORKDIR /tmp
+WORKDIR /app
 
 ADD Gemfile Gemfile
 
 ADD Gemfile.lock Gemfile.lock
 
-RUN echo 'gem: --no-document' > ~/.gemrc \
- && gem install bundler \
+RUN gem install bundler \
  && bundle install
 
-ENV APP_HOME /app
-
-WORKDIR $APP_HOME
-
-ADD . $APP_HOME
+ADD . /app
 
 EXPOSE 9000
 
