@@ -1,7 +1,7 @@
-require "./app/audio"
-require "./app/movie"
+require "./app/analyzer/audio"
+require "./app/analyzer/movie"
 
-class MainAnalyzer
+class Analyzer
   def self.call(file)
     f = file[:tempfile]
 

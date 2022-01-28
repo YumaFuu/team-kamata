@@ -1,7 +1,7 @@
 require "pry"
 require "json"
 
-require "./app/analyzer"
+require "./app/analyzer/analyzer"
 
 
 class Server
@@ -9,7 +9,7 @@ class Server
     begin
       f = env.dig("MULTIPART_CONTENT", "file")
 
-      result = MainAnalyzer.(f)
+      result = Analyzer.(f)
 
       res result.to_json
     rescue => e

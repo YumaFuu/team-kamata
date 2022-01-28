@@ -1,5 +1,5 @@
 require "pathname"
-require "./external/aws"
+require "./app/external/aws"
 
 class MovieAnalyzer
   def self.call(file)

@@ -1,5 +1,5 @@
 require "pathname"
-require "./external/empath"
+require "./app/external/empath"
 
 class AudioAnalyzer
   def self.call(file)
