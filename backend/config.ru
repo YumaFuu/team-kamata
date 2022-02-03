@@ -27,4 +27,6 @@ end
 use MultipartParser
 
 require "./app/server"
-run Server.new
+
+port = ENV["PORT"] || 9000
+Rack::Handler::WEBrick.run Server.new, Port: port

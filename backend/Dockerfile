@@ -17,4 +17,4 @@ ADD . /app
 
 EXPOSE 9000
 
-CMD ["bundle", "exec", "rackup", "-p", "9000", "-o", "0.0.0.0"]
+CMD ["bundle", "exec", "rackup", "-o", "0.0.0.0"]
